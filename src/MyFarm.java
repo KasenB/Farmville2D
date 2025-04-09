@@ -11,11 +11,20 @@ public class MyFarm {
         // declare a 2D grid of plots
 
         // construct a 2D grid of plots
+        grid = new Plot[3][4];
 
+        for(int a = 0; a < grid.length; a ++){
+            for (int b = 0; b < grid[a].length; b ++){
+//                System.out.println("planting at row " + a + ", column " + b);
+                grid[a][b] = new Plot();
+            }
+        }
 
         // methods to write together during class
         totalPlants();
-        totalCarrots();
+//        totalCarrots();
+        averageNumberOfPlants();
+        numberOfTomatoPlots();
 
         /***
          * for each additional method you code, call it here
@@ -26,21 +35,52 @@ public class MyFarm {
 
     public void totalPlants() {
         // how many plants are there in total across all plots?
+        int total = 0;
+        for(int x = 0; x < grid.length; x++){
+            for(int i = 0; i < grid[x].length; i++){
+                total += grid[x][i].numberOfPlants;
+            }
+        }
+        System.out.println("The total number of plants is " + total);
     }
 
     public void totalCarrots() {
         // how many total carrots are there across all plots?
-
+        int totalCarrots = 0;
+        for(int x = 0; x < grid.length; x++){
+            for(int i = 0; i < grid[x].length; i++){
+                if(grid[x][i].plantName == "carrot") {
+                    totalCarrots += grid[x][i].numberOfPlants;
+                }
+            }
+        }
+        System.out.println("There are " + totalCarrots + " total carrots");
     }
 
     public void averageNumberOfPlants() {
         // what is the average number of plants across the whole row?
-
+        int total = 0;
+        int numGrids = 0;
+        for(int x = 0; x < grid.length; x++){
+            for(int i = 0; i < grid[x].length; i++){
+                total += grid[x][i].numberOfPlants;
+                numGrids ++;
+            }
+        }
+        System.out.println("The average number of plants in each row is " + total/numGrids);
     }
 
     public void numberOfTomatoPlots() {
         // how many plots have carrots on them?
-
+        int totalTomato = 0;
+        for(int x = 0; x < grid.length; x++){
+            for(int i = 0; i < grid[x].length; i++){
+                if(grid[x][i].plantName == "tomato") {
+                    totalTomato ++;
+                }
+            }
+        }
+        System.out.println("There are " + totalTomato + " rows with tomatoes");
     }
 
     public void numberOfEmptyPlots() {
